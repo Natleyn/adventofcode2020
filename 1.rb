@@ -15,9 +15,9 @@ module Aoc1
 			end_index = end_index - 1
 		end
 		sorted_data.each_index do |index|
-			print "Comparing index #{index}, num #{sorted_data[index]}, with:\n"
+			#print "Comparing index #{index}, num #{sorted_data[index]}, with:\n"
 			while end_index >= 0 && sorted_data[index] + sorted_data[end_index] > target_num
-				print "... end_index #{end_index}, num #{sorted_data[end_index]}. Sum: #{sorted_data[index] + sorted_data[end_index]}\n"
+				#print "... end_index #{end_index}, num #{sorted_data[end_index]}. Sum: #{sorted_data[index] + sorted_data[end_index]}\n"
 				end_index = end_index - 1
 			end
 			if ((sorted_data[index] + sorted_data[end_index]) == target_num)
@@ -32,6 +32,19 @@ module Aoc1
 	def self.run_aoc1
 		run_program(@@number_array, 2020)	
 	end
+
+	def self.run_aoc2
+		@@number_array.each do |num|
+			#print "Searching for triple number solution, using number: #{num}\n"
+			triple_total = run_program(@@number_array, 2020-num)
+			if triple_total != -1
+				print "Solution is the two numbers printed past \"Solution found:\" and #{num}\n"
+				return triple_total
+			end
+		end
+		print "Triple solution not found.\n"
+		triple_total
+	end
 end
 
-print "#{Aoc1::run_aoc1}\n"
+print "#{Aoc1::run_aoc2}\n"
